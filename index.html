@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>BMI Category</title>
+ <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f0f0f0;
+    }
+    h1 {
+      color: #333;
+    }
+    label {
+      font-weight: bold;
+      color: #555;
+    }
+    input {
+      padding: 5px;
+      width: 200px;
+      font-size: 14px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    #message {
+      font-size: 18px;
+      color: #333;
+    }
+ </style>
+ 
+</head>
+<body>
+ <h1>BMI Category Calculator</h1>
+ <label for="weight">Weight (kg):</label>
+ <input type="text" id="weight" name="weight">
+ <br><br>
+ <label for="height">Height (m):</label>
+ <input type="text" id="height" name="height">
+ <br><br>
+ <button onclick="calculateBMI()">Calculate BMI</button>
+ <br><br>
+ <p id="message"></p>
+</body>
+</html>
+<script>
+    function calculateBMI() {
+      let weight = parseFloat(document.getElementById("weight").value);
+      let height = parseFloat(document.getElementById("height").value);
+      
+      if (isNaN(weight) || isNaN(height)) {
+        document.getElementById("message").innerHTML = "Invalid input! Please enter numeric values for weight and height.";
+      } else {
+        let bmi = weight / Math.pow(height, 2);
+        let message = "";
+        
+        if (bmi < 18.5) {
+          message = "Your BMI is " + bmi + ", so you are underweight.";
+        } else if (bmi >= 18.5 && bmi <= 24.9) {
+          message = "Your BMI is " + bmi + ", so you have a normal weight.";
+        } else {
+          message = "Your BMI is " + bmi + ", so you are overweight.";
+        }
+        
+        document.getElementById("message").innerHTML = message;
+      }
+    }
+ </script>
